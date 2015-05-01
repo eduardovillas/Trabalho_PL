@@ -1,4 +1,7 @@
-% Exercício 2.10
+
+
+
+
 
 %% primo(+X)
 %  
