@@ -1,5 +1,7 @@
 :- use_module(library(plunit)).
 
+%% triangulo(+Lado1, +Lado2, +Lado3, ?TipoDeTriangulo) is semidet
+
 :- begin_tests(triangulo).
 
    test(triangulo1, TipoDeTriangulo == escaleno) :- 
