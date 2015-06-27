@@ -9,25 +9,26 @@
 	test(quantidade_primos2, Q == 2) :- quantidade_primos(2,3,Q).
 	test(quantidade_primos3) :- quantidade_primos(2,3,2).
     test(quantidade_primos4, Q == 3) :- quantidade_primos(2, 5, Q).
+    test(quantidade_primos5, Q == 3) :- quantidade_primos(2, 6, Q).
 	
 :- end_tests(quantidade_primos).
 
-quantidade_primos(X,X,Q) :- !,
-primo(X),
-Q is 1.
+quantidade_primos(X,X,Q) :- \+primo(X), !,
+Q is 0.
+
+quantidade_primos(X,X,Q) :- primo(X), !,
+Q is 1, !.
 
 quantidade_primos(I,F,Q) :- 
-N0 is I,
 N2 is I + 1,
 quantidade_primos(N2,F,N),
-primo(N0), !, % o grande problema!!!!
+primo(I), !, % o grande problema!!!!
 Q is N + 1.
 
 quantidade_primos(I,F,Q) :- 
-N0 is I,
 N2 is I + 1,
 quantidade_primos(N2,F,N),
-\+primo(N0), % o grande problema!!!!
+\+primo(I), % o grande problema!!!!
 Q is N.
 
 
