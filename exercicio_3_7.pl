@@ -1,7 +1,7 @@
 
 %% removido_em(+L, +X, +I, ?R) is semidet
 %
-% é verdadeiro se R é a lista L com o elemento X removido da posição I.
+% é verdadeiro se R é a lista L com o elemento X inserido da posição I.
 
 :- begin_tests(removido_em).
 
@@ -14,7 +14,7 @@
 
 :- end_tests(removido_em).
          
-removido_em( [X|Y], X, I, Y ) :- !.
+removido_em( [X|Y], X, 1, Y ) :- !.
 
 removido_em( [U|Y], X, I, [U|H] ) :-
 I > 0,

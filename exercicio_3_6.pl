@@ -14,7 +14,7 @@
 
 :- end_tests(removido_em).
          
-removido_em( [X|Y], X, I, Y ) :- !.
+removido_em( [X|Y], X, 1, Y ) :- !.
 
 removido_em( [U|Y], X, I, [U|H] ) :-
 I > 0,
