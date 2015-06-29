@@ -6,7 +6,7 @@
 
 :- begin_tests(area).
 
-test(area_circulo, A =:= 12.566370614359172) :-
+test(area_circulo, A =:= 12.5664) :-
     area(circulo(2), A).
 
 test(area_quadrado, A =:= 16) :-
@@ -26,5 +26,7 @@ area(quadrado(L), A) :-
 
 area(retangulo(H, L), A) :-
     A is H * L.
+
+
 
 
