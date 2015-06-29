@@ -12,8 +12,7 @@
 
 :- end_tests(sublista).
 
-sublista( [], 1, 1, [] ).
-
+sublista( [U|_], 1, 1, [U] ) :- !.
 sublista( [U|Y], 1, J, [U|R] ) :-
 J > 1,
 J0 is J - 1,
@@ -22,9 +21,10 @@ sublista( Y, 1, J0, R ).
 sublista( [U|Y], I, J, R ) :-
 I > 1,
 I0 is I - 1, 
-sublista( Y, I0, J, R ).
+J0 is J -1,
+sublista( Y, I0, J0, R ).
 
-sublista( [U|_], 1, J, [U] ).
+
 
 
 
