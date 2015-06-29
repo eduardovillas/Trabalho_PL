@@ -11,7 +11,7 @@
 aplainada([], []).
 
 aplainada([X | XS], [X | Y] ) :-
-\+ is_list(X),
+\+ is_list(X), !,
 aplainada(XS, Y).
 
 aplainada([X | XS], F) :-
