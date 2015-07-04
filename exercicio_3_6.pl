@@ -11,6 +11,7 @@
 	test(removido_em4) :- removido_em([1,2,3], 1, 1, [2,3]).	
 	test(removido_em5) :- removido_em([1,2,4], 4, 3, [1,2]).
 	test(removido_em6, fail) :- removido_em([1,4], 2, 2, [1]).
+	test(removido_em7) :- removido_em([1,2,3,4,5], 2, 2, [1,3,4,5]).
 
 :- end_tests(removido_em).
          
