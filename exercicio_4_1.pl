@@ -40,7 +40,7 @@ D2 is D3 + 1.
 
 %% inteiro(N) is semidet
 %
-% Gerra e verifica se um numero e inteiro.
+% Gera e verifica se um numero e inteiro.
 
 :- begin_tests(inteiro).
 
