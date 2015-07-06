@@ -1,8 +1,17 @@
-arv_bin(nill).
-arv_bin(nodo(_,Esq,Dir)) :- arv_bin(Esq), arv_bin(Dir).
+%% arvore(?T) is semidet
+%
+% ´e verdadeiro se T ´e uma ´arvore bin´aria (de acordo com a defini¸c˜aodas notas de aula).
 
-na_arv(X,nodo(X,_,_)).
-na_arv(X,nodo(_,Esq,_)) :- na_arv(X,Esq).
-na_arv(X,nodo(_,_,Dir)) :- na_arv(X,Dir).
+:- begin_tests(arvore).
+
+	test(arvore1, T == nill) :- arvore(T).
+	test(arvore2) :- arvore(nodo(xj,nill,nill).
+	test(arvore3) :- arvore(nodo(x,nodo(c,nill,nill),nill)).
+	test(arvore4, faill) :- arvore(nodo(x,nodo(c,nill,nill,nill),nill)).
+
+:- end_tests(arvore).
+
+arvore(nill).
+arvore(nodo(_,Esq,Dir)) :- arvore(Esq), arvore(Dir).
 
 nodo(_,_,_).

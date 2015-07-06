@@ -12,4 +12,20 @@
 :- end_tests(palindromo).
 
 palindromo(L):-
-  reverse(L, L).
+  reverso(L, L).
+  
+:- begin_tests(reverso).
+
+test(reverso) :-
+    reverso([1, 2, 3], [3, 2, 1]).
+
+test(reverso, R == [8, 3, 4]) :-
+    reverso([4, 3, 8], R).
+
+:- end_tests(reverso).
+
+reverso([], []).
+
+reverso([A|As], R) :-
+    reverso(As, Rs),
+    append(Rs, [A], R).
