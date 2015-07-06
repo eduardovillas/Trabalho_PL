@@ -17,6 +17,15 @@ maximo([X],X) :- !.
 maximo([X|Y],M):-
 maximo(Y,M0),
 maior_entre(X,M0,M).
+
+
+:- begin_tests(maior_entre).
+
+	test(maior_entre1, fail) :- maior_entre(3,2,7).
+	test(maior_entre2) :- maior_entre(8,2,2).	
+	test(maior_entre3) :- maior_entre(2,2,2).	
+
+:- end_tests(maior_entre).
 	
 maior_entre( X, Y, X):- X > Y, !.
 maior_entre( _, Y, Y ).
