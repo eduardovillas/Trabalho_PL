@@ -8,12 +8,6 @@
 
 :- end_tests(duplicada).
 
-aplainada([], []).
-
-aplainada([X | XS], [X | Y] ) :-
-\+ is_list(X), !,
-aplainada(XS, Y).
-
-aplainada([X | XS], F) :-
-aplainada(X, F),
-aplainada(XS, F).
+aplainada(X,[X]) :- \+ is_list(X).
+aplainada([],[]).
+aplainada([X|Xs],Zs) :- aplainada(X,Y), aplainada(Xs,Ys), append(Y,Ys,Zs).

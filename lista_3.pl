@@ -342,16 +342,28 @@ merge([A|As], [B|Bs], [B|Cs]) :-
 
 :- begin_tests(aplainada).
 
-	test(aplainada1, D == [1, 2, 3, 4] ) :- aplainada([1,[2],[3,4]], F).
+	test(aplainada1, F == [1, 2, 3, 4] ) :- aplainada([1,[2],[3,4]], F).
 
-:- end_tests(duplicada).
+:- end_tests(aplainada).
 
-aplainada([], []).
+aplainada(X,[X]) :- \+ is_list(X).
+aplainada([],[]).
+aplainada([X|Xs],Zs) :- aplainada(X,Y), aplainada(Xs,Ys), append(Y,Ys,Zs).
 
-aplainada([X | XS], [X | Y] ) :-
-\+ is_list(X), !,
-aplainada(XS, Y).
+%% arvore(?T) is semidet
+%
+% ´e verdadeiro se T ´e uma ´arvore bin´aria (de acordo com a defini¸c˜aodas notas de aula).
 
-aplainada([X | XS], F) :-
-aplainada(X, F),
-aplainada(XS, F).
+:- begin_tests(arvore).
+
+	test(arvore1, T == nill) :- arvore(T).
+	test(arvore2) :- arvore(nodo(xj,nill,nill).
+	test(arvore3) :- arvore(nodo(x,nodo(c,nill,nill),nill)).
+	test(arvore4, faill) :- arvore(nodo(x,nodo(c,nill,nill,nill),nill)).
+
+:- end_tests(arvore).
+
+arvore(nill).
+arvore(nodo(_,Esq,Dir)) :- arvore(Esq), arvore(Dir).
+
+nodo(_,_,_).
