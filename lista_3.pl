@@ -1,7 +1,7 @@
 
 %% ultimo(+L, ?X ) is semidet
 %
-% verdadeiro se X é o ultimo elemento de L.
+% verdadeiro se X Ã© o ultimo elemento de L.
 
 :- begin_tests(ultimo).
 
@@ -18,7 +18,7 @@ ultimo([_|L], X) :- ultimo(L, X).
 
 %% pares(+L, ?P ) is semidet
 %
-% verdadeiro se P são apenas os elementos pares de L. (na mesma ordem).
+% verdadeiro se P sÃ£o apenas os elementos pares de L. (na mesma ordem).
 
 :- begin_tests(pares).
 
@@ -61,7 +61,7 @@ e_impar(X) :- X mod 2 =\= 0.
 
 %% lista_soma(+XS, +A, ?YS ) is semidet
 %
-% verdadeiro se a lista YS ´e a lista XS + A (cada elemento de XS somado com A).
+% verdadeiro se a lista YS Â´e a lista XS + A (cada elemento de XS somado com A).
 
 :- begin_tests(lista_soma).
 
@@ -78,7 +78,7 @@ lista_soma(Y, A, Z).
 
 %% maximo(+XS, ?M) is semidet
 %
-% ´e verdadeiro se M ´e o valor m´aximo da lista XS.
+% Â´e verdadeiro se M Â´e o valor mÂ´aximo da lista XS.
 
 :- begin_tests(maximo).
 
@@ -109,7 +109,7 @@ maior_entre( _, Y, Y ).
 
 %% palindromo(+L) is determinist
 %
-% ´e verdadeiro se L é um palindromo
+% Â´e verdadeiro se L Ã© um palindromo
 
 :- begin_tests(palindromo).
 
@@ -136,11 +136,11 @@ reverso([], []).
 
 reverso([A|As], R) :-
     reverso(As, Rs),
-    append(Rs, [A], R).
+    concatenacao(Rs, [A], R).
 
 %% removido_em(+L, +X, +I, ?R) is semidet
 %
-% é verdadeiro se R é a lista L com o elemento X removido da posição I.
+% Ã© verdadeiro se R Ã© a lista L com o elemento X removido da posiÃ§Ã£o I.
 
 :- begin_tests(removido_em).
 
@@ -163,7 +163,7 @@ removido_em( Y, X, I0, H ).
 
 %% inserido_em(+L, +X, +I, ?R) is semidet
 %
-% é verdadeiro se R é a lista L com o elemento X inserido da posição I.
+% Ã© verdadeiro se R Ã© a lista L com o elemento X inserido da posiÃ§Ã£o I.
 
 :- begin_tests(inserido_em).
 
@@ -185,7 +185,7 @@ inserido_em( Y, X, I0, H ).
 
 %% sublista(+L, +I, +J, ?R) is semidet
 %
-% é verdadeiro se R é uma sub lista de L com os elementos das posições de I a J (inclusive).
+% Ã© verdadeiro se R Ã© uma sub lista de L com os elementos das posiÃ§Ãµes de I a J (inclusive).
 
 :- begin_tests(sublista).
 
@@ -227,7 +227,7 @@ duplicada( Y, R ).
 
 %% dobrada(?L) is semidet
 %
-%  Verdadeiro se L é uma lista com dois blocos consecutivos de elementos
+%  Verdadeiro se L Ã© uma lista com dois blocos consecutivos de elementos
 %  iguais.
 
 :- begin_tests(dobrada).
@@ -240,26 +240,26 @@ test(dobrada2_fail, fail) :- dobrada2([a, b, a]).
 
 :- end_tests(dobrada).
 
-% versão simples
+% versÃ£o simples
 dobrada(L) :-
-    append(A, A, L), !.
+    concatenacao(A, A, L), !.
 
-% versão eficiente
+% versÃ£o eficiente
 dobrada2(L) :-
-    length(L, T),
+    tamanho(L, T),
     T rem 2 =:= 0,
     N is T div 2,
     divisao_em(N, L, A, A).
 
-%Defina um predicado rotacionada(L, N, R) que  ´e verdadeiro se R cont ´em os elementos de
-%L rotacionados N posi ¸c ~
+%Defina um predicado rotacionada(L, N, R) que  Â´e verdadeiro se R cont Â´em os elementos de
+%L rotacionados N posi Â¸c ~
 %oes a esquerda. Exemplo
 %?- rotacionada([a, b, c, d, e, f, g, h], 3, R).
 %R = [d, e, f, g, h, a, b, c].
 
 %% rotacionada(+L, +N, ?R) is semidet
 %
-% verdadeiro se R contém os elementos da lista l rotacionados N posicoes a esquerda.
+% verdadeiro se R contÃ©m os elementos da lista l rotacionados N posicoes a esquerda.
 
 :- use_module(library(plunit)).
 
@@ -274,12 +274,12 @@ dobrada2(L) :-
 
 rotacionada(List, N, RotatedList) :-
 length(Front, N),           
-append(Front, Back, List), 
-append(Back, Front, RotatedList).  
+concatenacao(Front, Back, List), 
+concatenacao(Back, Front, RotatedList).  
 
 %% mergesort(+A, -S) is semidet
 %
-%  Verdadeiro se S é uma permutação de A ordenada. Ou seja, S é A ordenada.
+%  Verdadeiro se S Ã© uma permutaÃ§Ã£o de A ordenada. Ou seja, S Ã© A ordenada.
 
 :- begin_tests(mergesort).
 
@@ -298,11 +298,11 @@ mergesort([A0,A1|T], S) :-
 
 %% divisao(+A, ?B, ?C) is semidet
 %
-%  Verdadeiro se B concatenado com C é A. Os tamanhos de B e C pode ser
-%  diferentes no máximo em 1.
+%  Verdadeiro se B concatenado com C Ã© A. Os tamanhos de B e C pode ser
+%  diferentes no mÃ¡ximo em 1.
 
 divisao(A, B, C) :-
-    length(A, T),
+    tamanho(A, T),
     N is T div 2,
     divisao_em(N, A, B, C).
 
@@ -322,7 +322,7 @@ divisao_em(0, A, [], A).
 
 %% merge(+A, +B, ?C) is semidet
 %
-%  Verdadeiro se C é a intercalação das listas A e B.
+%  Verdadeiro se C Ã© a intercalaÃ§Ã£o das listas A e B.
 
 merge(A, [], A).
 merge([], B, B).
@@ -338,7 +338,7 @@ merge([A|As], [B|Bs], [B|Cs]) :-
 
 %% aplainada(+L, ?F) is semidet
 %
-% e verdadeiro se F e uma vers˜ao n˜ao aninhada de L
+% e verdadeiro se F e uma vers?ao n?ao aninhada de L
 
 :- begin_tests(aplainada).
 
@@ -348,11 +348,11 @@ merge([A|As], [B|Bs], [B|Cs]) :-
 
 aplainada(X,[X]) :- \+ is_list(X).
 aplainada([],[]).
-aplainada([X|Xs],Zs) :- aplainada(X,Y), aplainada(Xs,Ys), append(Y,Ys,Zs).
+aplainada([X|Xs],Zs) :- aplainada(X,Y), aplainada(Xs,Ys), concatenacao(Y,Ys,Zs).
 
 %% arvore(?T) is semidet
 %
-% ´e verdadeiro se T ´e uma ´arvore bin´aria (de acordo com a defini¸c˜aodas notas de aula).
+% Â´e verdadeiro se T Â´e uma Â´arvore binÂ´aria (de acordo com a definiÂ¸c?aodas notas de aula).
 
 :- begin_tests(arvore).
 
@@ -368,7 +368,7 @@ arvore(nodo(_,Esq,Dir)) :- arvore(Esq), arvore(Dir).
 
 %% num_folhas(?T, ?S) is semidet
 %
-% e verdadeiro se S ´e o n´umero de folhas da ´arvore bin´aria T.
+% e verdadeiro se S Â´e o nÂ´umero de folhas da Â´arvore binÂ´aria T.
 
 
 :- begin_tests(num_folhas).
@@ -394,3 +394,50 @@ num_folhas( nodo(_,Y,Z), S ) :- num_folhas( Y, N ), num_folhas( Z, J ), N0 is N 
 
 nodo(_,_,_).
 nodoFolha( nodo(_,nill,nill) ).
+
+%% concatenacao(?X, ?Y, ?Z) is nondet
+%
+%  Verdadeiro se Z Ã© a concatenaÃ§Ã£o de X com Y.
+%
+%  Veja o predicado prÃ©-definido concatenacao/3.
+
+:- begin_tests(concatenacao).
+
+test(t0) :- concatenacao([1, 2], [3, 4, 5], [1, 2, 3, 4, 5]).
+test(t1, [nondet, XS == [1, 2, 4]]) :- concatenacao(XS, [3], [1, 2, 4, 3]).
+test(t2, YS == [4, 3]) :- concatenacao([1, 2], YS, [1, 2, 4, 3]).
+test(t3, all(p(XS, YS) == [
+         p([], [1, 2, 3]),
+         p([1], [2, 3]),
+         p([1, 2], [3]),
+         p([1, 2, 3], [])])) :-
+    concatenacao(XS, YS, [1, 2, 3]).
+
+
+:- end_tests(concatenacao).
+
+concatenacao([], YS, YS).
+
+concatenacao([X | XS], YS, [X | XSYS]) :-
+    concatenacao(XS, YS, XSYS).
+	
+%% tamanho(+XS, ?T) is nondet
+%
+%  Verdadeiro se a quantidade de elementos na lista XS Ã© T.
+%
+%  Veja o predicado prÃ©-definido length/2.
+
+:- begin_tests(tamanho).
+
+test(t0) :- tamanho([], 0).
+test(t1) :- tamanho([1], 1).
+test(t2) :- tamanho([7, 2], 2).
+
+:- end_tests(tamanho).
+
+
+tamanho([_ | XS], T) :-
+	tamanho(XS, T0),
+	T is T0 + 1.
+
+tamanho([], 0).
