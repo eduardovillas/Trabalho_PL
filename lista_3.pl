@@ -1,4 +1,3 @@
-
 %% ultimo(+L, ?X ) is semidet
 %
 % verdadeiro se X é o ultimo elemento de L.
@@ -357,9 +356,9 @@ aplainada([X|Xs],Zs) :- aplainada(X,Y), aplainada(Xs,Ys), concatenacao(Y,Ys,Zs).
 :- begin_tests(arvore).
 
 	test(arvore1, T == nill) :- arvore(T).
-	test(arvore2) :- arvore(nodo(xj,nill,nill).
+	test(arvore2) :- arvore(nodo(xj,nill,nill)).
 	test(arvore3) :- arvore(nodo(x,nodo(c,nill,nill),nill)).
-	test(arvore4, faill) :- arvore(nodo(x,nodo(c,nill,nill,nill),nill)).
+	test(arvore4, fail) :- arvore(nodo(x,nodo(c,nill,nill,nill),nill)).
 
 :- end_tests(arvore).
 
